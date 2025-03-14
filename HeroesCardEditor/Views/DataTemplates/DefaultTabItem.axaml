@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:vm="using:HeroesCardEditor.ViewModels"
+					xmlns:m="using:HeroesCardEditor.Models">
+
+	<ControlTheme x:Key="DefaultTabItem" TargetType="TabItem">
+		<Setter Property="Template">
+			<ControlTemplate TargetType="TabItem">
+				<DockPanel>
+					<ContentPresenter DockPanel.Dock="Left"
+									  Margin="1"
+									  Content="{TemplateBinding Header}"
+									  HorizontalAlignment="Left"
+									  VerticalAlignment="Center"/>
+
+					<Button x:Name="button"
+							DockPanel.Dock="Right"
+							Content="x"
+							Background="Transparent"
+							FontSize="20">
+						<Interaction.Behaviors>
+							<EventTriggerBehavior EventName="Click">
+								<InvokeCommandAction
+									Command="{Binding ((vm:ITabContainer)DataContext).CloseTab, 
+                                RelativeSource={RelativeSource FindAncestor, 
+                                AncestorType={x:Type TabControl}}}">
+									<InvokeCommandAction.CommandParameter>
+										<MultiBinding>
+											<Binding Path="$parent[Window]"/>
+											<TemplateBinding Property="DataContext"/>
+										</MultiBinding>
+									</InvokeCommandAction.CommandParameter>
+								</InvokeCommandAction>
+							</EventTriggerBehavior>
+						</Interaction.Behaviors>
+					</Button>
+				</DockPanel>
+			</ControlTemplate>
+		</Setter>
+	</ControlTheme>
+</ResourceDictionary>

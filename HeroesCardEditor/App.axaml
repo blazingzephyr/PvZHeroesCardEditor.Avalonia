@@ -1,0 +1,28 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:s="using:System.Dynamic"
+			 xmlns:v="using:HeroesCardEditor"
+			 xmlns:m="using:HeroesCardEditor.Models"
+			 xmlns:vm="using:HeroesCardEditor.ViewModels"
+             x:Class="HeroesCardEditor.App"
+             RequestedThemeVariant="Light">
+
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+	
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceInclude Source="/Views/DataTemplates/ObservableCardDescriptor.axaml" />
+				<ResourceInclude Source="/Views/DataTemplates/FileEditor.axaml" />
+				<ResourceInclude Source="/Views/DataTemplates/DefaultTabItem.axaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+	
+	<Application.DataTemplates>
+		<StaticResource ResourceKey="ObservableCardDescriptor"/>
+		<StaticResource ResourceKey="FileEditor"/>
+	</Application.DataTemplates>
+</Application>
