@@ -552,8 +552,8 @@
 												<MenuFlyout>
 													<MenuItem Header="General" ItemsSource="{x:Static m:CardProperties.General}">
 														<MenuItem.ItemTemplate>
-															<DataTemplate x:Class="c:Component">
-																<MenuItem Header="{Binding}"
+															<DataTemplate x:DataType="sys:Type">
+																<MenuItem Header="{Binding Name}"
 																		Command="{Binding #list.((m:ObservableCardDescriptor)DataContext).CreateNewComponentOfType}">
 																	<MenuItem.CommandParameter>
 																		<MultiBinding>
@@ -567,8 +567,8 @@
 													</MenuItem>
 													<MenuItem Header="Triggers" ItemsSource="{x:Static m:CardProperties.Triggers}">
 														<MenuItem.ItemTemplate>
-															<DataTemplate x:Class="c:Component">
-																<MenuItem Header="{Binding}"
+															<DataTemplate x:DataType="sys:Type">
+																<MenuItem Header="{Binding Name}"
 																		Command="{Binding #list.((m:ObservableCardDescriptor)DataContext).CreateNewComponentOfType}">
 																	<MenuItem.CommandParameter>
 																		<MultiBinding>
@@ -582,8 +582,8 @@
 													</MenuItem>
 													<MenuItem Header="Filters" ItemsSource="{x:Static m:CardProperties.Filters}">
 														<MenuItem.ItemTemplate>
-															<DataTemplate x:Class="c:Component">
-																<MenuItem Header="{Binding}"
+															<DataTemplate x:DataType="sys:Type">
+																<MenuItem Header="{Binding Name}"
 																		Command="{Binding #list.((m:ObservableCardDescriptor)DataContext).CreateNewComponentOfType}">
 																	<MenuItem.CommandParameter>
 																		<MultiBinding>
@@ -597,8 +597,8 @@
 													</MenuItem>
 													<MenuItem Header="Effects" ItemsSource="{x:Static m:CardProperties.Effects}">
 														<MenuItem.ItemTemplate>
-															<DataTemplate x:Class="c:Component">
-																<MenuItem Header="{Binding}"
+															<DataTemplate x:DataType="sys:Type">
+																<MenuItem Header="{Binding Name}"
 																		Command="{Binding #list.((m:ObservableCardDescriptor)DataContext).CreateNewComponentOfType}">
 																	<MenuItem.CommandParameter>
 																		<MultiBinding>
@@ -612,8 +612,8 @@
 													</MenuItem>
 													<MenuItem Header="Conditions" ItemsSource="{x:Static m:CardProperties.Conditions}">
 														<MenuItem.ItemTemplate>
-															<DataTemplate x:Class="c:Component">
-																<MenuItem Header="{Binding}"
+															<DataTemplate x:DataType="sys:Type">
+																<MenuItem Header="{Binding Name}"
 																		Command="{Binding #list.((m:ObservableCardDescriptor)DataContext).CreateNewComponentOfType}">
 																	<MenuItem.CommandParameter>
 																		<MultiBinding>
@@ -627,8 +627,8 @@
 													</MenuItem>
 													<MenuItem Header="Multipliers" ItemsSource="{x:Static m:CardProperties.Multipliers}">
 														<MenuItem.ItemTemplate>
-															<DataTemplate x:Class="c:Component">
-																<MenuItem Header="{Binding}"
+															<DataTemplate x:DataType="sys:Type">
+																<MenuItem Header="{Binding Name}"
 																		Command="{Binding #list.((m:ObservableCardDescriptor)DataContext).CreateNewComponentOfType}">
 																	<MenuItem.CommandParameter>
 																		<MultiBinding>

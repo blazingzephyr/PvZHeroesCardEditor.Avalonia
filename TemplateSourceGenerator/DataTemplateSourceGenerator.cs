@@ -4,7 +4,6 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.FindSymbols;
 using Microsoft.CodeAnalysis.Text;
 
 namespace TemplateSourceGenerator;
@@ -103,17 +102,6 @@ public class DataTemplateSourceGenerator : IIncrementalGenerator
 
                 void CreatePanel(string? text, string? tooltip, Control control)
                 {
-                    //StackPanel subpanel = new StackPanel {
-                    //    Orientation = Orientation.Horizontal,
-                    //    Spacing = 15
-                    //};
-                    //TextBlock label = new TextBlock { VerticalAlignment = VerticalAlignment.Center, Text = text };
-                    //ToolTip.SetTip(label, tooltip);
-
-                    //subpanel.Children.Add(label);
-                    //subpanel.Children.Add(control);
-                    //panel.Children.Add(subpanel);
-
                     TextBlock label = new TextBlock { VerticalAlignment = VerticalAlignment.Center, Text = text };
                     ToolTip.SetTip(label, tooltip);
                 
@@ -210,7 +198,7 @@ public class DataTemplateSourceGenerator : IIncrementalGenerator
                     break;
 
                 case object when namedType.Name.Contains("ObservableCollection"):
-                    INamedTypeSymbol arg = namedType.TypeArguments[0] as INamedTypeSymbol;
+                    if (namedType.TypeArguments[0] is not INamedTypeSymbol arg) break;
                     if (arg.Name == "UInt32")
                     {
                         properties += $$"""
@@ -246,10 +234,12 @@ public class DataTemplateSourceGenerator : IIncrementalGenerator
 
                         properties += $$"""
                             StackPanel addAndRemove = new StackPanel { Orientation = Orientation.Horizontal };
-                            ComboBox box = new ComboBox {
-                                ItemsSource = new Type[] {{{s}}}
-                            };
-
+                            ComboBox box = new ComboBox { ItemsSource = new Type[] {{{s}}} };
+                            box.ItemTemplate = new FuncDataTemplate<object>((o, c) =>
+                            {
+                                return new TextBlock { Text = o is Type t ? t.Name : o?.ToString() };
+                            });
+                            
                             box.SelectionChanged += (sender, e) =>
                             {
                                 object? instance = Activator.CreateInstance((Type)e.AddedItems[0]);
