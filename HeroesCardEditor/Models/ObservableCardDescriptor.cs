@@ -67,7 +67,11 @@ internal partial class ObservableCardDescriptor : ObservableRecipient, ITabConta
     public RarityType Rarity
     {
         get => _rarity.Value;
-        set => SetProperty(_rarity.Value, value, b => _rarity.Value = b, nameof(Rarity));
+        set
+        {
+            _desc.Rarity = (uint)value;
+            SetProperty(_rarity.Value, value, b => _rarity.Value = b, nameof(Rarity));
+        }
     }
 
     public string? Set
