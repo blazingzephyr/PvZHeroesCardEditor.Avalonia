@@ -349,8 +349,8 @@
 								Spacing="15">
 						<TextBlock VerticalAlignment="Center"
 								   Text="Deadly"
-								   ToolTip.Tip="-1 to not use deadly."/>
-						<NumericUpDown Minimum="-1" Increment="1" Value="{Binding Deadly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+								   ToolTip.Tip="false to not use deadly."/>
+						<CheckBox IsChecked="{Binding Deadly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 					</StackPanel>
 
 					<StackPanel Grid.Column="2"

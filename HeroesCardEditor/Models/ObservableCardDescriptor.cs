@@ -371,16 +371,10 @@ internal partial class ObservableCardDescriptor : ObservableRecipient, ITabConta
         set => SetComponent(ref _frenzy, Frenzy, value, nameof(Frenzy));
     }
 
-    public int Deadly
+    public bool Deadly
     {
-        get => _deadly is null ? -1 : _deadly.Counters[0].Value;
-        set => SetComponent(ref _deadly, Deadly, value > -1, nameof(Deadly), () =>
-        {
-            if (_deadly is not null)
-            {
-                _deadly.Counters[0].Value = value;
-            }
-        });
+        get => _deadly is not null;
+        set => SetComponent(ref _deadly, Deadly, value, nameof(Deadly));
     }
 
     public bool Unhealable
